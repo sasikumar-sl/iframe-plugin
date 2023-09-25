@@ -1,5 +1,5 @@
 import { useSignal } from "@preact/signals";
-import Tree from "../components/Tree.tsx";
+import Tree from "../islands/Tree.tsx";
 
 export default function Home() {
   return (

@@ -1,3 +1,4 @@
+import { JSX } from "preact";
 import { useEffect, useRef, useState } from "preact/hooks";
 
 export default function Tree() {
@@ -8,8 +9,9 @@ export default function Tree() {
     const handleSendClick = () => {
         // You can handle sending the input value here, for example, by logging it to the console.
         console.log('Input Value:', inputValue);
+        console.log("=============================================================== iframe", globalThis, window, self);
     
-        window.parent.postMessage(
+        globalThis.parent.postMessage(
           {
             methodName: 'button-click',
             data: inputValue,
@@ -33,11 +35,12 @@ export default function Tree() {
           }));
         };
     
-        self.addEventListener('message', handler);
+        globalThis.addEventListener('message', handler);
     
         // Don't forget to remove addEventListener
-        return () => self.removeEventListener('message', handler);
+        return () => globalThis.removeEventListener('message', handler);
       }, []);
+
 
     return(<section class="p-0 m-0 w-full h-full">
          <div className="p-10 flex items-center justify-center space-x-10">
